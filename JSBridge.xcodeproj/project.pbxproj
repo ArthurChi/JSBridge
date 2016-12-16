@@ -13,6 +13,8 @@
 		2A3BC23D1E0382C300FD7241 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A3BC23B1E0382C300FD7241 /* Main.storyboard */; };
 		2A3BC23F1E0382C300FD7241 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A3BC23E1E0382C300FD7241 /* Assets.xcassets */; };
 		2A3BC2421E0382C300FD7241 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A3BC2401E0382C300FD7241 /* LaunchScreen.storyboard */; };
+		2A3BC24C1E03837300FD7241 /* WebViewBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3BC24B1E03837300FD7241 /* WebViewBridge.m */; };
+		2A3BC24F1E03838300FD7241 /* UIWebView+JSBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3BC24E1E03838300FD7241 /* UIWebView+JSBridge.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,10 @@
 		2A3BC23E1E0382C300FD7241 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A3BC2411E0382C300FD7241 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A3BC2431E0382C300FD7241 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2A3BC24A1E03837300FD7241 /* WebViewBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewBridge.h; sourceTree = "<group>"; };
+		2A3BC24B1E03837300FD7241 /* WebViewBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewBridge.m; sourceTree = "<group>"; };
+		2A3BC24D1E03838300FD7241 /* UIWebView+JSBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+JSBridge.h"; sourceTree = "<group>"; };
+		2A3BC24E1E03838300FD7241 /* UIWebView+JSBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+JSBridge.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +64,7 @@
 		2A3BC2311E0382C300FD7241 /* JSBridge */ = {
 			isa = PBXGroup;
 			children = (
+				2A3BC2491E03834A00FD7241 /* JSBridge */,
 				2A3BC2351E0382C300FD7241 /* AppDelegate.h */,
 				2A3BC2361E0382C300FD7241 /* AppDelegate.m */,
 				2A3BC2381E0382C300FD7241 /* ViewController.h */,
@@ -77,6 +84,17 @@
 				2A3BC2331E0382C300FD7241 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2A3BC2491E03834A00FD7241 /* JSBridge */ = {
+			isa = PBXGroup;
+			children = (
+				2A3BC24D1E03838300FD7241 /* UIWebView+JSBridge.h */,
+				2A3BC24E1E03838300FD7241 /* UIWebView+JSBridge.m */,
+				2A3BC24A1E03837300FD7241 /* WebViewBridge.h */,
+				2A3BC24B1E03837300FD7241 /* WebViewBridge.m */,
+			);
+			path = JSBridge;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,6 +169,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A3BC24F1E03838300FD7241 /* UIWebView+JSBridge.m in Sources */,
+				2A3BC24C1E03837300FD7241 /* WebViewBridge.m in Sources */,
 				2A3BC23A1E0382C300FD7241 /* ViewController.m in Sources */,
 				2A3BC2371E0382C300FD7241 /* AppDelegate.m in Sources */,
 				2A3BC2341E0382C300FD7241 /* main.m in Sources */,
