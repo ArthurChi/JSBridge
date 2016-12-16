@@ -46,13 +46,17 @@ static NSString* const callbackName = @"callbackName";
 #pragma - life cycle
 - (instancetype) initWith:(UIWebView*)webView {
     
-    NSAssert(webView.delegate != nil, @"webview's delegate is nil");
+    if (self = [super init]) {
+        NSAssert(webView.delegate != nil, @"webview's delegate is nil");
+        
+        _target = webView.delegate;
+        webView.delegate = self;
+        _webView = webView;
+        
+        return self;
+    }
     
-    _target = webView.delegate;
-    webView.delegate = self;
-    _webView = webView;
-    
-    return self;
+    return nil;
 }
 
 - (void)dealloc {
@@ -68,7 +72,11 @@ static NSString* const callbackName = @"callbackName";
 }
 
 - (BOOL)respondsToSelector:(SEL)aSelector {
-
+    
+    if (aSelector == @selector(webViewDidStartLoad:)) {
+        return YES;
+    }
+    
     unsigned methodCount = 0;
     unsigned selfMethodCount = 0;
     

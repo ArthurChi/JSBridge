@@ -1,0 +1,50 @@
+<html>
+<head>
+	<script type="text/javascript">
+
+<!--      	window.onload = function() {-->
+<!---->
+<!--      		alert('start');-->
+<!--      	};-->
+
+		btnOnClicked = function() {
+			var dele=document.createElement("input");
+			dele.type="button";
+			dele.value="删除";
+			dele.onClick='simplifyString("123")';
+			document.body.appendChild(dele);
+			return 123;
+		};
+
+		var aaa = function(argum1) {
+			alert(argum1);
+		};
+
+		var bbb = function () {
+
+			person.setcallback(function (argum) {
+				alert(argum);
+			});
+	    	// webkit.messageHandlers.callbackHandler.postMessage("Hello from JavaScript");
+		};
+
+		function redHeader() {
+    		document.querySelector('h1').style.color = "red";
+		}
+
+		function nativeCallback(obj, callback) {
+			var j = JSON.parse(obj);
+			alert(j.name);
+            j.title='boss';
+            callback(JSON.stringify(j));
+		}
+
+	</script>
+</head>
+<body>
+	<h1>WKWebView Test</h1>
+	<input type='Button' value='按钮' onClick ='bbb()'/>
+	<input type='Button' value='jscore' onClick='simplifyString("123")'/>
+</body>
+
+</html>
