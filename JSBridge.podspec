@@ -8,6 +8,5 @@ Pod::Spec.new do |s|
    s.source           = { :git => "https://github.com/sun-fox-cj/JSBridge.git", :tag => s.version}
    s.platform     = :ios, '6.0'
    s.requires_arc = true
-   # s.ios.deployment_target = "5.0"
-   s.source_files = "JSBridge/JSBridge/*.{h, m}"
+   s.source_files = "JSBridge/JSBridge/**/*.{h, m}"
 end
