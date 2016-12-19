@@ -26,13 +26,12 @@ static NSString* webViewBridge = @"webViewBridge";
 }
 
 - (WebViewBridge*)bridge {
-    return objc_getAssociatedObject(self, &webViewBridge);
-}
-
-- (void)registBridge {
-    NSAssert(self.delegate != nil, @"delegate mustn't be nil");
+    if (!objc_getAssociatedObject(self, &webViewBridge)) {
+        WebViewBridge *bridge = [[WebViewBridge alloc] initWith:self];
+        [self setBridge:bridge];
+    }
     
-    self.bridge = [[WebViewBridge alloc] initWith:self];
+    return objc_getAssociatedObject(self, &webViewBridge);
 }
 
 @end

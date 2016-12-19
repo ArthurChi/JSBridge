@@ -27,7 +27,7 @@
     
     NSString* str = [callback toString];
     
-    [callback.context evaluateScript:[NSString stringWithFormat:@"%@('this is message')", str]];
+    [callback.context evaluateScript:[NSString stringWithFormat:@"(%@)('this is message')", str]];
 }
 
 @end

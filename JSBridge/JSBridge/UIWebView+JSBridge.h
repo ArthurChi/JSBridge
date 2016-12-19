@@ -14,9 +14,4 @@
 
 @property (nonatomic, strong, readonly) WebViewBridge* bridge;
 
-/**
- *  should set webview's delegate before the invocation of this method
- */
-- (void)registBridge;
-
 @end

@@ -28,10 +28,8 @@
     
     _webView.delegate = self;
     
-    [_webView registBridge];
-    
     Person* p = [Person createWithFirstName:@"123" lastName:@"abc"];
-    [_webView.bridge registObject:p alias:@"abc"];
+    [_webView.bridge registObject:p alias:@"person"];
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
@@ -41,5 +39,21 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     NSLog(@"123");
 }
+
+- (IBAction)refresh:(UIBarButtonItem *)sender {
+    
+    [_webView reload];
+}
+
+- (IBAction)evaluateJS:(UIBarButtonItem *)sender {
+    
+    NSDictionary* obj = @{@"name":@"123", @"age":@"23"};
+    
+    NSData *data = [NSJSONSerialization dataWithJSONObject:obj options:0 error:nil];
+    NSString* str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSString* js = [NSString stringWithFormat:@"nativeCallback('%@', simplifyString)", str];
+    [_webView stringByEvaluatingJavaScriptFromString:js];
+}
+
 
 @end
