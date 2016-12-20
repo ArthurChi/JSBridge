@@ -186,7 +186,7 @@ static NSString* const callbackName = @"callbackName";
         
         if (self.shouldRegistAliases.count != 0 && _jsContext) {
             [self.shouldRegistAliases enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-                [self registObject:obj alias:key];
+                [self registerObject:obj alias:key];
             }];
             
             [self.shouldRegistAliases removeAllObjects];
