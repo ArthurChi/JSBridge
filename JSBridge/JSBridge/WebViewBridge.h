@@ -24,7 +24,7 @@ typedef void(^JSBridgeCallback)(NSString*);
  */
 - (instancetype) initWith:(UIWebView*)webView;
 
-- (void)registObject:(id<JSExport>)obj alias:(NSString*)alias;
+- (void)registerObject:(id<JSExport>)obj alias:(NSString*)alias;
 
 - (id)evaluateScript:(NSString*)js;
 - (void)evaluateScript:(NSString*)jsFuncName withDictionary:(NSDictionary*)argums callbackSelector:(SEL) aSelector;

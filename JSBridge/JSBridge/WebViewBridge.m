@@ -108,7 +108,7 @@ static NSString* const callbackName = @"callbackName";
 
 #pragma public API
 
-- (void)registObject:(id<JSExport>)obj alias:(NSString*)alias {
+- (void)registerObject:(id<JSExport>)obj alias:(NSString*)alias {
     NSAssert(![self.registedAliases containsObject:alias], @"this alias has used, please change to other name");
     
     if (_jsContext) {

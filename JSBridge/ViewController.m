@@ -29,7 +29,7 @@
     _webView.delegate = self;
     
     Person* p = [Person createWithFirstName:@"123" lastName:@"abc"];
-    [_webView.bridge registObject:p alias:@"person"];
+    [_webView.bridge registerObject:p alias:@"person"];
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
