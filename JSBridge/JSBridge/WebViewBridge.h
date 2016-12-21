@@ -26,6 +26,9 @@ typedef void(^JSBridgeCallback)(NSString*);
 
 - (void)registerObject:(id<JSExport>)obj alias:(NSString*)alias;
 
+- (void)unregisterObjectForAlias:(NSString*) alias;
+- (void)unregisterAllObjects;
+
 - (id)evaluateScript:(NSString*)js;
 - (void)evaluateScript:(NSString*)jsFuncName withDictionary:(NSDictionary*)argums callbackSelector:(SEL) aSelector;
 - (void)evaluateScript:(NSString*)jsFuncName withDictionary:(NSDictionary*)argums callbackBlock:(JSBridgeCallback) callback;

@@ -148,6 +148,16 @@ static NSString* const callbackName = @"callbackName";
     [_jsContext evaluateScript:tmpJs];
 }
 
+- (void)unregisterObjectForAlias:(NSString*) alias {
+    [_jsContext setObject:nil forKeyedSubscript:alias];
+}
+
+- (void)unregisterAllObjects {
+    for (NSString* alias in _registedAliases) {
+        [_jsContext setObject:nil forKeyedSubscript:alias];
+    }
+}
+
 #pragma - private API
 
 - (void)registCallback {
