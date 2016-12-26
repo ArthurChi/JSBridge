@@ -15,9 +15,8 @@ static NSString* const callbackName = @"callbackName";
 
 @property (nonatomic, readwrite, weak) UIWebView* webView;
 @property (nonatomic, weak) NSObject<UIWebViewDelegate>* target;
-@property (nonatomic, strong) JSContext* jsContext;
+@property (nonatomic, weak) JSContext* jsContext;
 
-@property (nonatomic, strong) NSMutableDictionary* shouldRegistAliases;
 @property (nonatomic, strong) NSMutableSet* registedAliases;
 @property (nonatomic) SEL aSelector;
 @property (nonatomic, copy) JSBridgeCallback callback;
@@ -35,14 +34,6 @@ static NSString* const callbackName = @"callbackName";
     return _registedAliases;
 }
 
-- (NSMutableDictionary *)shouldRegistAliases {
-    if (!_shouldRegistAliases) {
-        _shouldRegistAliases = [NSMutableDictionary dictionary];
-    }
-    
-    return _shouldRegistAliases;
-}
-
 #pragma - life cycle
 - (instancetype) initWith:(UIWebView*)webView {
     
@@ -52,6 +43,8 @@ static NSString* const callbackName = @"callbackName";
         _target = webView.delegate;
         webView.delegate = self;
         _webView = webView;
+        
+        _jsContext = [_webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
         
         return self;
     }
@@ -108,15 +101,11 @@ static NSString* const callbackName = @"callbackName";
 
 #pragma public API
 
-- (void)registerObject:(id<JSExport>)obj alias:(NSString*)alias {
+- (void)registerObject:(id)obj alias:(NSString*)alias {
     NSAssert(![self.registedAliases containsObject:alias], @"this alias has used, please change to other name");
     
-    if (_jsContext) {
-        [_jsContext setObject:obj forKeyedSubscript:alias];
-        [_registedAliases addObject:alias];
-    } else {
-        self.shouldRegistAliases[alias] = obj;
-    }
+    _jsContext[alias] = obj;
+    [_registedAliases addObject:alias];
 }
 
 - (id)evaluateScript:(NSString*)js {
@@ -190,17 +179,7 @@ static NSString* const callbackName = @"callbackName";
 - (void)webViewDidStartLoad:(UIWebView *)webView {
     if (_webView == webView) {
         
-        _jsContext = [_webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
-        [self.registedAliases removeAllObjects];
         [self registCallback];
-        
-        if (self.shouldRegistAliases.count != 0 && _jsContext) {
-            [self.shouldRegistAliases enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-                [self registerObject:obj alias:key];
-            }];
-            
-            [self.shouldRegistAliases removeAllObjects];
-        }
         
         _jsContext.exceptionHandler = ^(JSContext* jsContext, JSValue* jsValue) {
             NSLog(@"there are something wrong in js, the detail is %@", jsValue);
