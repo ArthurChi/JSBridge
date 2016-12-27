@@ -17,6 +17,7 @@
 		2A3BC24F1E03838300FD7241 /* UIWebView+JSBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3BC24E1E03838300FD7241 /* UIWebView+JSBridge.m */; };
 		2A3BC2511E03876E00FD7241 /* JSCorePractise.html in Resources */ = {isa = PBXBuildFile; fileRef = 2A3BC2501E03876E00FD7241 /* JSCorePractise.html */; };
 		2A3BC2541E03891C00FD7241 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3BC2531E03891C00FD7241 /* Person.m */; };
+		2AF8761C1E121E0E00FF5108 /* NSObject+JSBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF8761B1E121E0E00FF5108 /* NSObject+JSBridge.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,8 @@
 		2A3BC2501E03876E00FD7241 /* JSCorePractise.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = JSCorePractise.html; sourceTree = "<group>"; };
 		2A3BC2521E03891C00FD7241 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		2A3BC2531E03891C00FD7241 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		2AF8761A1E121E0E00FF5108 /* NSObject+JSBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+JSBridge.h"; sourceTree = "<group>"; };
+		2AF8761B1E121E0E00FF5108 /* NSObject+JSBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+JSBridge.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +104,8 @@
 				2A3BC24E1E03838300FD7241 /* UIWebView+JSBridge.m */,
 				2A3BC24A1E03837300FD7241 /* WebViewBridge.h */,
 				2A3BC24B1E03837300FD7241 /* WebViewBridge.m */,
+				2AF8761A1E121E0E00FF5108 /* NSObject+JSBridge.h */,
+				2AF8761B1E121E0E00FF5108 /* NSObject+JSBridge.m */,
 			);
 			path = JSBridge;
 			sourceTree = "<group>";
@@ -181,6 +186,7 @@
 				2A3BC2541E03891C00FD7241 /* Person.m in Sources */,
 				2A3BC24F1E03838300FD7241 /* UIWebView+JSBridge.m in Sources */,
 				2A3BC24C1E03837300FD7241 /* WebViewBridge.m in Sources */,
+				2AF8761C1E121E0E00FF5108 /* NSObject+JSBridge.m in Sources */,
 				2A3BC23A1E0382C300FD7241 /* ViewController.m in Sources */,
 				2A3BC2371E0382C300FD7241 /* AppDelegate.m in Sources */,
 				2A3BC2341E0382C300FD7241 /* main.m in Sources */,

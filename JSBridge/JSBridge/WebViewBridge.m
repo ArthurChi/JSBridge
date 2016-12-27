@@ -8,6 +8,7 @@
 
 #import "WebViewBridge.h"
 #import <objc/runtime.h>
+#import "NSObject+JSBridge.h"
 
 static NSString* const callbackName = @"callbackName";
 
@@ -17,6 +18,7 @@ static NSString* const callbackName = @"callbackName";
 @property (nonatomic, weak) NSObject<UIWebViewDelegate>* target;
 @property (nonatomic, weak) JSContext* jsContext;
 
+@property (nonatomic, strong) NSMutableDictionary* shouldRegister;
 @property (nonatomic, strong) NSMutableSet* registedAliases;
 @property (nonatomic) SEL aSelector;
 @property (nonatomic, copy) JSBridgeCallback callback;
@@ -34,6 +36,14 @@ static NSString* const callbackName = @"callbackName";
     return _registedAliases;
 }
 
+- (NSMutableDictionary*)shouldRegister {
+    if (!_shouldRegister) {
+        _shouldRegister = [NSMutableDictionary dictionary];
+    }
+    
+    return _shouldRegister;
+}
+
 #pragma - life cycle
 - (instancetype) initWith:(UIWebView*)webView {
     
@@ -44,12 +54,22 @@ static NSString* const callbackName = @"callbackName";
         webView.delegate = self;
         _webView = webView;
         
-        _jsContext = [_webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didCreateJSContext:) name:kNotifyNameDidCreatedContext object:nil];
         
         return self;
     }
     
     return nil;
+}
+
+- (void)didCreateJSContext:(NSNotification*) notification {
+    _jsContext = notification.object;
+    
+    [self.shouldRegister enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+        _jsContext[key] = obj;
+    }];
+    
+    [self.shouldRegister removeAllObjects];
 }
 
 - (void)dealloc {
@@ -104,7 +124,7 @@ static NSString* const callbackName = @"callbackName";
 - (void)registerObject:(id)obj alias:(NSString*)alias {
     NSAssert(![self.registedAliases containsObject:alias], @"this alias has used, please change to other name");
     
-    _jsContext[alias] = obj;
+    self.shouldRegister[alias] = obj;
     [_registedAliases addObject:alias];
 }
 
